@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -185,4 +185,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'administrator' => [
+        'name' => env('ADMIN_NAME'),
+        'email' => env('ADMIN_EMAIL'),
+    ],
 ];
