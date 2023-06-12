@@ -1,0 +1,39 @@
+@extends('adminlte::page')
+
+@section('title', 'AdminLTE')
+
+@section('content_header')
+    <h1 class="m-0 text-dark">{{ __('tables.{{ table }}') }}</h1>
+@stop
+
+@section('content')
+    <div class="row">
+        <div class="col-12">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <form class="form-horizontal" action="{{ route('{{ tables }}.update', compact('{{ table }}')) }}" method="put">
+                @csrf
+                @method('put')
+
+                <div class="card">
+                    <div class="card-header">
+
+                    </div>
+
+                    <div class="card-body">
+
+                    </div>
+
+                    <div class="card-footer">v
+                        <div class="form-control">
+                            <button type="submit">{{ __('submit') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+@stop
