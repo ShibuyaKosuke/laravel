@@ -1,0 +1,50 @@
+@extends('adminlte::page')
+
+@section('title', 'AdminLTE')
+
+@section('content_header')
+    <h1 class="m-0 text-dark">{{ __('tables.{{ table }}') }}</h1>
+@stop
+
+@section('content')
+    <div class="row">
+        <div class="col-12">
+            <a href="{{ route('{{ tables }}.create') }}" class="btn btn-success">
+                {{ __('{{ tables }}.create') }}
+            </a>
+        </div>
+    </div>
+
+    @if(${{ tables }}->isNotEmpty())
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+
+                    </div>
+
+                    <div class="card-body table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>{{ __('tables.id') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(${{ tables }} as ${{ table }})
+                                    <tr class="{{ Arr::toCssClasses(['bg-danger' => ${{ table }}->trashed()]) }}">
+                                        <td>{{ ${{ table }}->id }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card-footer">
+                        {{ ${{ tables }}->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+@stop
