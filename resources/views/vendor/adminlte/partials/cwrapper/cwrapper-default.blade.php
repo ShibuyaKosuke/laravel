@@ -13,7 +13,16 @@
     @hasSection('content_header')
         <div class="content-header">
             <div class="{{ config('adminlte.classes_content_header') ?: $def_container_class }}">
-                @yield('content_header')
+                <div class="row mb-3">
+                    <div class="col-12">
+                        @yield('content_header')
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-sm">
+                        {{ Breadcrumbs::render() }}
+                    </div>
+                </div>
             </div>
         </div>
     @endif
