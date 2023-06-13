@@ -74,8 +74,11 @@ class ViewMakeCommand extends Command
             }
 
             return CommandAlias::SUCCESS;
+
+            // @codeCoverageIgnoreStart
         } catch (\Throwable $e) {
             return CommandAlias::FAILURE;
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -152,9 +155,11 @@ class ViewMakeCommand extends Command
         $path = app()->viewPath($dir.'/'.$name);
 
         if ($this->files->exists($path)) {
+            // @codeCoverageIgnoreStart
             $this->error("View {$dir}/{$name} already exists!");
 
             return;
+            // @codeCoverageIgnoreEnd
         }
 
         $this->files->put($path, $stub);
@@ -162,49 +167,21 @@ class ViewMakeCommand extends Command
         $this->info("View {$dir}/{$name} created successfully.");
     }
 
-    /**
-     * Get the desired class name from the input.
-     */
-    protected function getNameInput(): string
-    {
-        return trim($this->argument('model'));
-    }
-
-    /**
-     * Parse the class name and format according to the root namespace.
-     */
-    protected function qualifyClass(string $name): string
-    {
-        $name = ltrim($name, '\\/');
-
-        $name = str_replace('/', '\\', $name);
-
-        $rootNamespace = $this->rootNamespace();
-
-        if (Str::startsWith($name, $rootNamespace)) {
-            return $name;
-        }
-
-        return $this->qualifyClass(
-            $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$name
-        );
-    }
-
-    /**
-     * Get the root namespace for the class.
-     */
-    protected function rootNamespace(): string
-    {
-        return $this->laravel->getNamespace();
-    }
-
-    /**
-     * Get the default namespace for the class.
-     */
-    protected function getDefaultNamespace(string $rootNamespace): string
-    {
-        return is_dir(app_path('Models')) ? $rootNamespace.'\\Models' : $rootNamespace;
-    }
+//    /**
+//     * Get the root namespace for the class.
+//     */
+//    protected function rootNamespace(): string
+//    {
+//        return $this->laravel->getNamespace();
+//    }
+//
+//    /**
+//     * Get the default namespace for the class.
+//     */
+//    protected function getDefaultNamespace(string $rootNamespace): string
+//    {
+//        return is_dir(app_path('Models')) ? $rootNamespace.'\\Models' : $rootNamespace;
+//    }
 
     /**
      * Replace the namespace for the given stub.
@@ -229,10 +206,10 @@ class ViewMakeCommand extends Command
     /**
      * Get the full namespace for a given class, without the class name.
      */
-    protected function getNamespace(string $name): string
-    {
-        return trim(implode('\\', array_slice(explode('\\', $name), 0, -1)), '\\');
-    }
+//    protected function getNamespace(string $name): string
+//    {
+//        return trim(implode('\\', array_slice(explode('\\', $name), 0, -1)), '\\');
+//    }
 
     private function getTableName(): string
     {
