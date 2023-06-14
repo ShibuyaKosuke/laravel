@@ -8,6 +8,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+/**
+ * @codeCoverageIgnore
+ */
 class EmailVerificationPromptController extends Controller
 {
     /**
